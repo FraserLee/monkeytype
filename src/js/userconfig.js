@@ -66,6 +66,7 @@ let defaultConfig = {
   chartStyle: "line",
   minWpm: "off",
   minWpmCustomSpeed: 100,
+  missedWordsCount: 50,
   highlightMode: "letter",
   alwaysShowCPM: false,
   enableAds: "off",
@@ -427,6 +428,14 @@ function setMinWpmCustomSpeed(val, nosave) {
     val = 100;
   }
   config.minWpmCustomSpeed = val;
+  if (!nosave) saveConfigToCookie();
+}
+
+function setMissedWordsCount(val, nosave) {
+  if (val == undefined || Number.isNaN(parseInt(val))) {
+    val = 50;
+  }
+  config.missedWordsCount = val;
   if (!nosave) saveConfigToCookie();
 }
 
@@ -1540,6 +1549,7 @@ function applyConfig(configObj) {
     setChartStyle(configObj.chartStyle, true);
     setMinWpm(configObj.minWpm, true);
     setMinWpmCustomSpeed(configObj.minWpmCustomSpeed, true);
+    setMissedWordsCount(configObj.missedWordsCount, true);
     setMinAcc(configObj.minAcc, true);
     setMinAccCustom(configObj.minAccCustom, true);
     setNumbers(configObj.numbers, true);

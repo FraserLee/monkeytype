@@ -219,6 +219,10 @@ settingsGroups.minWpm = new SettingsGroup("minWpm", setMinWpm, () => {
     );
   }
 });
+settingsGroups.missedWordsCount = new SettingsGroup(
+  "missedWordsCount",
+  setMissedWordsCount
+);
 settingsGroups.minAcc = new SettingsGroup("minAcc", setMinAcc, () => {
   if (config.minAcc === "custom") {
     $(".pageSettings .section.minAcc input.customMinAcc").removeClass("hidden");
@@ -717,7 +721,19 @@ $(document).on(
     );
   }
 );
-
+$(document).on(
+  "focusout",
+  ".pageSettings .section.missedWordsCount input.customMissedWordsCount",
+  (e) => {
+    setMissedWordsCount(
+      parseInt(
+        $(
+          ".pageSettings .section.missedWordsCount input.customMissedWordsCount"
+        ).val()
+      )
+    );
+  }
+);
 $(document).on(
   "focusout",
   ".pageSettings .section.minAcc input.customMinAcc",
